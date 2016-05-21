@@ -8,7 +8,8 @@
   </head>
 
   <body>
-    <h1>Twitchtv</h1>
+    <div ng-view class="container"></div>
+
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -23,5 +24,7 @@
 
     <!-- streamer module -->
     <script src="app/streamer/streamer.module.js"></script>
+    <script src="app/streamer/config.route.js"></script>
+    <script src="app/streamer/streamer.controller.js"></script>
   </body>
 </html>
