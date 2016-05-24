@@ -3,7 +3,18 @@
 
   angular
     .module('app.streamer')
-    .constant('twitchUrl', {
-      STREAMS: 'https://api.twitch.tv/kraken/streams/'
+    .constant('twitch', {
+      URL: 'https://api.twitch.tv/kraken/streams/',
+      CHANNELS: [
+        'freecodecamp',
+        'storbeck',
+        'terakilobyte',
+        'habathcx',
+        'RobotCaleb',
+        'thomasballinger',
+        'noobs2ninjas',
+        'beohoff',
+        'ESL_SC2'
+      ]
     });
 })();
