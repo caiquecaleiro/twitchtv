@@ -13,7 +13,7 @@
   function configFunction($routeProvider) {
     $routeProvider
       .otherwise({
-        redirectTo: '/streamer'
+        redirectTo: '/'
       });
   }
 })();

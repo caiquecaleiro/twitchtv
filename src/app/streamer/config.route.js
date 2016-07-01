@@ -9,7 +9,7 @@
 
   function configFunction($routeProvider) {
     $routeProvider
-      .when('/streamer', {
+      .when('/', {
         templateUrl: 'app/streamer/streamer.html',
         controller: 'StreamerController',
         controllerAs: 'vm'
