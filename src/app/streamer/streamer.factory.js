@@ -28,7 +28,7 @@
     }
 
     function getData(username) {
-      var deferred = $q.defer()
+      var deferred = $q.defer();
       $http.jsonp(twitch.URL + username + '?callback=JSON_CALLBACK')
         .success(function(data) {
           var streamer = null;

@@ -1,0 +1,22 @@
+{
+  "name": "twitchtv",
+  "homepage": "https://github.com/caiquecaleiro/twitchtv",
+  "authors": [
+    "Caique Caleiro <caiquecaleiro@gmail.com>"
+  ],
+  "description": "Twitchtv streamers viewer",
+  "main": "app.module.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "bootstrap": "^3.3.6",
+    "angular-route": "^1.5.7"
+  }
+}
