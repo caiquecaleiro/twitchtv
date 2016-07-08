@@ -5,10 +5,13 @@
     .module('app.streamer')
     .controller('StreamerController', StreamerController);
 
-  StreamerController.$inject = ['streamerFactory'];
+  StreamerController.$inject = ['streamerService'];
 
-  function StreamerController(streamerFactory) {
+  function StreamerController(streamerService) {
     var vm = this;
-    console.log(streamerFactory.getStreamers());
+    streamerService.getStreamers()
+      .then(function(data) {
+        console.log(data);
+      });
   }
 })();

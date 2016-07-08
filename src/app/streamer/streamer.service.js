@@ -3,11 +3,11 @@
 
   angular
     .module('app.streamer')
-    .factory('streamerFactory', streamerFactory);
+    .factory('streamerService', streamerService);
 
-  streamerFactory.$inject = ['$http', '$q', 'twitch'];
+  streamerService.$inject = ['$http', '$q', 'twitch'];
 
-  function streamerFactory($http, $q, twitch) {
+  function streamerService($http, $q, twitch) {
     var service = {
       getStreamers: getStreamers
     };
@@ -16,6 +16,7 @@
 
     function getStreamers() {
       var promises = [];
+      var deferred = $q.defer();
 
       angular.forEach(twitch.CHANNELS, function(value) {
         promises.push(getData(value));
@@ -23,8 +24,9 @@
 
       $q.all(promises).then(
         function(streamers) {
-          return streamers;
+          deferred.resolve(streamers);
         });
+      return deferred.promise;
     }
 
     function getData(username) {
