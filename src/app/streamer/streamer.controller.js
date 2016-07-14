@@ -9,9 +9,11 @@
 
   function StreamerController(streamerService) {
     var vm = this;
+    vm.streamers = null;
+
     streamerService.getStreamers()
       .then(function(data) {
-        console.log(data);
+        vm.streamers = data;
       });
   }
 })();

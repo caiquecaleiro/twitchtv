@@ -40,10 +40,16 @@
               'Online',
               data.stream.channel.status
             );
-          } else {
+          } else if (data.stream === null) {
             streamer = new Streamer(
               username,
               'Offline',
+              ''
+            );
+          } else if (data.stream === undefined) {
+            streamer = new Streamer(
+              username,
+              'Account closed',
               ''
             );
           }

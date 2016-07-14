@@ -14,7 +14,10 @@
         'thomasballinger',
         'noobs2ninjas',
         'beohoff',
-        'ESL_SC2'
+        'ESL_SC2',
+        'OgamingSC2',
+        'comster404',
+        'brunofin'
       ]
     });
 })();

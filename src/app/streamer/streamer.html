@@ -1,1 +1,21 @@
-<h1>Twitchtv</h1>
+<div class="container">
+  <h3>Twitch Streames</h3>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="streamer in vm.streamers" ng-class="streamer.status === 'Online' ? 'success' : 'danger'">
+          <td>{{ streamer.name }}</td>
+          <td>{{ streamer.description }}</td>
+          <td>{{ streamer.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
