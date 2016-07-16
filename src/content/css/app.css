@@ -8,6 +8,18 @@ h3 {
   color: #FFF;
 }
 
+.list {
+  width: 480px;
+}
+
+.red {
+  background-color: #CA0000;
+}
+
+.green {
+  background-color: #20850C;
+}
+
 .channel {
   font-size: 16px;
 }

@@ -31,26 +31,29 @@
 
     function getData(username) {
       var deferred = $q.defer();
-      $http.jsonp(twitch.URL + username + '?callback=JSON_CALLBACK')
+      $http.jsonp(twitch.API_URL + username + '?callback=JSON_CALLBACK')
         .success(function(data) {
           var streamer = null;
           if (data.stream) {
             streamer = new Streamer(
               data.stream.channel.display_name,
               'Online',
-              data.stream.channel.status
+              data.stream.channel.status,
+              twitch.URL + username
             );
           } else if (data.stream === null) {
             streamer = new Streamer(
               username,
               'Offline',
-              ''
+              '',
+              twitch.URL + username
             );
           } else if (data.stream === undefined) {
             streamer = new Streamer(
               username,
               'Account closed',
-              ''
+              '',
+              twitch.URL + username
             );
           }
           deferred.resolve(streamer);
@@ -61,10 +64,11 @@
         return deferred.promise;
     }
 
-    function Streamer(name, status, description) {
+    function Streamer(name, status, description, url) {
       this.name = name;
       this.status = status;
       this.description = description;
+      this.url = url;
     }
   }
 })();

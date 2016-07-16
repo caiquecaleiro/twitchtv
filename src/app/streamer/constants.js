@@ -4,7 +4,8 @@
   angular
     .module('app.streamer')
     .constant('twitch', {
-      URL: 'https://api.twitch.tv/kraken/streams/',
+      API_URL: 'https://api.twitch.tv/kraken/streams/',
+      URL: 'https://www.twitch.tv/',
       CHANNELS: [
         'freecodecamp',
         'storbeck',
