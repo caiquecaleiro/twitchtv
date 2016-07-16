@@ -1,0 +1,18 @@
+body {
+  background-color: #1F2739;
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #FFF;
+}
+
+.channel {
+  font-size: 16px;
+}
+
+.channel-description {
+  font-size: 12px;
+  padding-right: 40px;
+}
