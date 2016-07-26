@@ -1,5 +1,3 @@
-'use strict';
-
 var gulp = require('gulp');
 var connect = require('gulp-connect');
 var jshint = require('gulp-jshint');
@@ -16,37 +14,34 @@ gulp.task('lint', function() {
 });
 
 gulp.task('clean', function() {
-    gulp.src('./dist/*')
-      .pipe(clean({force: true}));
+  return gulp.src('dist', {read: false})
+    .pipe(clean({force: true}));
 });
 
 gulp.task('minify-css', function() {
   var opts = {comments:true,spare:true};
-  gulp.src(['./src/**/*.css', '!./bower_components/**'])
+  return gulp.src(['src/**/*.css'])
     .pipe(minifyCSS(opts))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('dist/src/'));
 });
 
 gulp.task('minify-js', function() {
-  gulp.src(['./src/**/*.js', '!./bower_components/**'])
-    .pipe(uglify({
-      // inSourceMap:
-      // outSourceMap: "app.js.map"
-    }))
-    .pipe(gulp.dest('./dist/'));
+  return gulp.src(['src/**/*.js'])
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/src/'));
 });
 
-gulp.task('copy-bower-components', function () {
-  gulp.src('./bower_components/**')
+gulp.task('copy-bower-components', function() {
+  return gulp.src('bower_components/**/*')
     .pipe(gulp.dest('dist/bower_components'));
 });
 
-gulp.task('copy-html-files', function () {
-  gulp.src('./src/**/*.html')
-    .pipe(gulp.dest('dist/'));
+gulp.task('copy-html-files', function() {
+  return gulp.src('src/**/*.html')
+    .pipe(gulp.dest('dist/src/'));
 });
 
-gulp.task('connect', function () {
+gulp.task('connect', function() {
   connect.server({
     root: ['src'],
     port: 8080,
@@ -57,20 +52,31 @@ gulp.task('connect', function () {
   });
 });
 
-gulp.task('connectDist', function () {
+gulp.task('connectDist', function() {
   connect.server({
-    root: 'dist/',
-    port: 8084
+    root: ['dist/src/'],
+    port: 8080,
+    livereload: true,
+    middleware: function(connect) {
+      return [connect().use('/bower_components', connect.static('bower_components'))];
+    }
   });
 });
 
-gulp.task('default',
-  ['lint', 'connect']
-);
+gulp.task('default', function() {
+  runSequence(
+    'lint',
+    'connect'
+  );
+});
 
 gulp.task('build', function() {
   runSequence(
-    ['clean'],
-    ['lint', 'minify-css', 'minify-js', 'copy-html-files', 'copy-bower-components', 'connectDist']
+    'lint',
+    'clean',
+    ['minify-css', 'minify-js'],
+    'copy-html-files',
+    'copy-bower-components',
+    'connectDist'
   );
 });
